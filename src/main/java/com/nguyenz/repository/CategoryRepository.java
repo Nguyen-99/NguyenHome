@@ -1,0 +1,9 @@
+package com.nguyenz.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.nguyenz.entity.Category;
+
+public interface CategoryRepository extends JpaRepository<Category, Integer> {
+
+}
