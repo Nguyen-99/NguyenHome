@@ -18,14 +18,14 @@ public class CategoryServiceImpl implements CategoryService{
 	private CategoryRepository categoryRepository;
 	
 	@Autowired
-	private UtilService utilService;
+	private UtilServiceImpl utilServiceImpl;
 	
 	@Override
 	public List<CategoryDTO> getAll() {
 		List<Category> categories = categoryRepository.findAll();
 		List<CategoryDTO> categoryDTOs = new ArrayList<>();
 		for(Category category:categories) {
-			CategoryDTO categoryDTO = utilService.convertToCategoryDTO(category);
+			CategoryDTO categoryDTO = utilServiceImpl.convertToCategoryDTO(category);
 			categoryDTOs.add(categoryDTO);
 		}
 		return categoryDTOs;
@@ -34,13 +34,16 @@ public class CategoryServiceImpl implements CategoryService{
 	@Override
 	public CategoryDTO getById(int id) {
 		Category category = categoryRepository.findById(id).orElse(null);
-		return utilService.convertToCategoryDTO(category);
+		if(category == null){
+			return null;
+		}
+		return utilServiceImpl.convertToCategoryDTO(category);
 	}
 
 	@Override
 	public CategoryDTO add(CategoryDTO categoryDTO) {
-		Category category = utilService.convertToCategory(categoryDTO);
-		return utilService.convertToCategoryDTO(categoryRepository.save(category));
+		Category category = utilServiceImpl.convertToCategory(categoryDTO);
+		return utilServiceImpl.convertToCategoryDTO(categoryRepository.save(category));
 	}
 
 	@Override
@@ -50,7 +53,7 @@ public class CategoryServiceImpl implements CategoryService{
 
 	@Override
 	public void delete(int id) {
-		Category category = utilService.convertToCategory(getById(id));
+		Category category = utilServiceImpl.convertToCategory(getById(id));
 		categoryRepository.delete(category);
 	}
 
