@@ -25,7 +25,7 @@ public class Category {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
-	
+	private boolean active;
 	@OneToMany(mappedBy = "category")
 	private List<Room> roomList;
 	

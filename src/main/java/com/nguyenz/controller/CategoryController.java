@@ -3,10 +3,7 @@ package com.nguyenz.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.nguyenz.dto.CategoryDTO;
 import com.nguyenz.service.CategoryService;
@@ -17,14 +14,32 @@ public class CategoryController {
 	
 	@Autowired
 	private CategoryService categoryService;
-	
+
+	@GetMapping("/getAll")
+	public List<CategoryDTO> getAll(){
+		return categoryService.getAll();
+	}
+
+	@GetMapping("/getById/{id}")
+	public CategoryDTO getById(@PathVariable int id){
+		return categoryService.getById(id);
+	}
+
 	@GetMapping("/add")
 	public CategoryDTO addCategory(@RequestBody CategoryDTO categoryDTO) {
 		return categoryService.add(categoryDTO);
 	}
-	
-	@GetMapping("/get-all")
-	public List<CategoryDTO> getAll(){
-		return categoryService.getAll();
+
+	@PutMapping("/update")
+	public CategoryDTO updateCategory(@RequestBody CategoryDTO categoryDTO){
+		return categoryService.update(categoryDTO);
+	}
+
+	@PutMapping("/delete/{id}")
+
+
+	@DeleteMapping("/delete/{id}")
+	public void deleteCategory(@PathVariable int id){
+		categoryService.delete(id);
 	}
 }
