@@ -59,7 +59,7 @@ public class CategoryServiceImpl implements CategoryService{
 	}
 
 	@Override
-	public void delete(int id) {
-		categoryRepository.normalDelete(id);
+	public int delete(int id) {
+		return categoryRepository.normalDelete(id);
 	}
 }
