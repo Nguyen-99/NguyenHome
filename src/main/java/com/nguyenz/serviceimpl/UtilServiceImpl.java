@@ -27,6 +27,7 @@ public class UtilServiceImpl implements UtilService {
 		Category category = new Category();
 		category.setId(categoryDTO.getId());
 		category.setName(categoryDTO.getName());
+		category.setActive(true);
 		category.setRoomList(roomRepository.getRoomByCategoryId(categoryDTO.getId()));
 		return category;
 	}

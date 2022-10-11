@@ -10,5 +10,6 @@ public interface CategoryService {
 	
 	CategoryDTO add(CategoryDTO categoryDTO);
 	CategoryDTO update(CategoryDTO categoryDTO);
-	void delete(int id);
+	void hardDelete(int id);
+	int delete(int id);
 }
