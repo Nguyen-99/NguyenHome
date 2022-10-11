@@ -36,7 +36,7 @@ public class RoomServiceImpl implements RoomService {
 
     }
 
-    public void test(){
+    public void test() {
 
     }
 }
