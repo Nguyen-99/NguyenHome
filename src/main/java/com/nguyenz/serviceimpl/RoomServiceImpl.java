@@ -35,8 +35,4 @@ public class RoomServiceImpl implements RoomService {
     public void hardDelete(int id) {
 
     }
-
-    public void test() {
-
-    }
 }
