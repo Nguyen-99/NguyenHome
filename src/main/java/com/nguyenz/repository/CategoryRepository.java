@@ -18,4 +18,5 @@ public interface CategoryRepository extends JpaRepository<Category, Integer> {
     @Modifying
     @Transactional
     int normalDelete(int id);
+
 }

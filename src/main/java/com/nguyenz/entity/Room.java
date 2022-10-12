@@ -36,7 +36,7 @@ public class Room {
 	private Date postDate;
 	@Column(name = "update_date")
 	private Date updateDate;
-	
+	private boolean active;
 	@ManyToOne
 	@JoinColumn(name = "category_id")
 	private Category category;
