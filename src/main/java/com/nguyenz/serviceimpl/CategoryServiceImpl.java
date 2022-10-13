@@ -33,7 +33,7 @@ public class CategoryServiceImpl implements CategoryService{
 
 	@Override
 	public CategoryDTO getById(int id) {
-		Category category = categoryRepository.findById(id).orElse(null);
+		Category category = categoryRepository.getById(id);
 		if(category == null){
 			return null;
 		}
@@ -43,7 +43,6 @@ public class CategoryServiceImpl implements CategoryService{
 	@Override
 	public CategoryDTO add(CategoryDTO categoryDTO) {
 		Category category = utilServiceImpl.convertToCategory(categoryDTO);
-		category.setActive(true);
 		return utilServiceImpl.convertToCategoryDTO(categoryRepository.save(category));
 	}
 

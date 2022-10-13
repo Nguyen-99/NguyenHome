@@ -1,5 +1,6 @@
 package com.nguyenz.repository;
 
+import com.nguyenz.entity.Room;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.nguyenz.entity.Category;
@@ -18,5 +19,9 @@ public interface CategoryRepository extends JpaRepository<Category, Integer> {
     @Modifying
     @Transactional
     int normalDelete(int id);
+
+
+    @Query(value = "select c from Category c where c.active = true and c.id = ?1")
+    Category getById(int categoryId);
 
 }
