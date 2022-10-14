@@ -6,10 +6,12 @@ import com.nguyenz.repository.RoomRepository;
 import com.nguyenz.service.RoomService;
 import com.nguyenz.service.UtilService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class RoomServiceImpl implements RoomService {
 
     @Autowired

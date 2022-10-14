@@ -2,6 +2,7 @@ package com.nguyenz.serviceimpl;
 
 import com.nguyenz.dto.RoomDTO;
 import com.nguyenz.entity.Room;
+import com.nguyenz.repository.CategoryRepository;
 import com.nguyenz.service.UtilService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,9 @@ public class UtilServiceImpl implements UtilService {
 
 	@Autowired
 	private RoomRepository roomRepository;
+
+	@Autowired
+	private CategoryRepository categoryRepository;
 
 	@Override
 	public CategoryDTO convertToCategoryDTO(Category category) {
@@ -49,11 +53,15 @@ public class UtilServiceImpl implements UtilService {
 		roomDTO.setPrice(room.getPrice());
 		roomDTO.setImage(room.getImage());
 		roomDTO.setDescription(room.getDescription());
-		String sPostDate = convertDateToString(room.getPostDate(),"dd/MM/yyyy HH:mm:ss");
-		String sUpdateDate = convertDateToString(room.getUpdateDate(),"dd/MM/yyyy HH:mm:ss");
-		roomDTO.setPostDate(sPostDate);
-		roomDTO.setUpdateDate(sUpdateDate);
-		roomDTO.setCategory(room.getCategory().getName());
+		if(room.getPostDate() != null){
+			String sPostDate = convertDateToString(room.getPostDate(),"dd/MM/yyyy HH:mm:ss");
+			roomDTO.setPostDate(sPostDate);
+		}
+		if(room.getUpdateDate() != null){
+			String sUpdateDate = convertDateToString(room.getUpdateDate(),"dd/MM/yyyy HH:mm:ss");
+			roomDTO.setUpdateDate(sUpdateDate);
+		}
+		roomDTO.setCategoryId(room.getCategory().getId());
 		return roomDTO;
 	}
 
@@ -67,12 +75,16 @@ public class UtilServiceImpl implements UtilService {
 		room.setPrice(roomDTO.getPrice());
 		room.setImage(roomDTO.getImage());
 		room.setDescription(roomDTO.getDescription());
-		Date postDate = convertStringToDate(roomDTO.getPostDate(),"dd/MM/yyyy HH:mm:ss");
-		Date updateDate = convertStringToDate(roomDTO.getUpdateDate(),"dd/MM/yyyy HH:mm:ss");
-		room.setPostDate(postDate);
-		room.setUpdateDate(updateDate);
+		if(roomDTO.getPostDate() != null){
+			Date postDate = convertStringToDate(roomDTO.getPostDate(),"dd/MM/yyyy HH:mm:ss");
+			room.setPostDate(postDate);
+		}
+		if(roomDTO.getUpdateDate() != null){
+			Date updateDate = convertStringToDate(roomDTO.getUpdateDate(),"dd/MM/yyyy HH:mm:ss");
+			room.setUpdateDate(updateDate);
+		}
 		room.setActive(true);
-		room.setCategory(roomRepository.getCategoryByRoomId(room.getId()));
+		room.setCategory(categoryRepository.getById(roomDTO.getCategoryId()));
 		return room;
 	}
 

@@ -25,7 +25,7 @@ public class CategoryController {
 		return categoryService.getById(id);
 	}
 
-	@GetMapping("/add")
+	@PostMapping("/add")
 	public CategoryDTO addCategory(@RequestBody CategoryDTO categoryDTO) {
 		return categoryService.add(categoryDTO);
 	}

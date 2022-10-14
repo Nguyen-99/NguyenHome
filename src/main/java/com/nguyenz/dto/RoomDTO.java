@@ -19,5 +19,5 @@ public class RoomDTO {
 	private String description;
 	private String postDate;
 	private String updateDate;
-	private String category;
+	private int categoryId;
 }
