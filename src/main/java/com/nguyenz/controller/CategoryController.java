@@ -35,7 +35,7 @@ public class CategoryController {
 		return categoryService.update(categoryDTO);
 	}
 
-	@PutMapping("/delete/{id}")
+	@GetMapping("/delete/{id}")
 	public void deleteCategory(@PathVariable int id){
 		categoryService.delete(id);
 	}
