@@ -1,7 +1,6 @@
 package com.nguyenz.controller;
 
 import com.nguyenz.dto.RoomDTO;
-import com.nguyenz.entity.Room;
 import com.nguyenz.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +24,7 @@ public class RoomController {
         return roomService.getById(id);
     }
 
-    @GetMapping("/add")
+    @PostMapping("/add")
     public RoomDTO addRoom(@RequestBody RoomDTO roomDTO){
         return roomService.add(roomDTO);
     }
@@ -35,7 +34,7 @@ public class RoomController {
         return roomService.update(roomDTO);
     }
 
-    @PutMapping("/delete/{id}")
+    @GetMapping("/delete/{id}")
     public int deleteRoom(@PathVariable int id){
         return roomService.delete(id);
     }

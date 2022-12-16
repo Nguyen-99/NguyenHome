@@ -61,7 +61,9 @@ public class UtilServiceImpl implements UtilService {
 			String sUpdateDate = convertDateToString(room.getUpdateDate(),"dd/MM/yyyy HH:mm:ss");
 			roomDTO.setUpdateDate(sUpdateDate);
 		}
-		roomDTO.setCategoryId(room.getCategory().getId());
+		if(room.getCategory() != null){
+			roomDTO.setCategoryId(room.getCategory().getId());
+		}
 		return roomDTO;
 	}
 
